@@ -47,15 +47,13 @@ config = {
         url: 'http://'+process.env.OPENSHIFT_APP_DNS,
         mail: {},
         database: {
-			database: {
-			  client: 'mysql',
-			   connection: {
-			  host: process.env.OPENSHIFT_MYSQL_DB_HOST,
-			  user: process.env.OPENSHIFT_MYSQL_DB_USERNAME,
-			  password: process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
-			  database: process.env.OPENSHIFT_APP_NAME,
-			  charset: 'utf8'
-		  					},
+            client: 'mysql',
+            connection: {
+  			  host: process.env.OPENSHIFT_MYSQL_DB_HOST,
+  			  user: process.env.OPENSHIFT_MYSQL_DB_USERNAME,
+  			  password: process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
+  			  database: process.env.OPENSHIFT_APP_NAME,
+  			  charset: 'utf8'
             },
             debug: false
         },
@@ -63,7 +61,7 @@ config = {
             // Host to be passed to node's `net.Server#listen()`
             host: process.env.OPENSHIFT_NODEJS_IP,
             // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
-            port: process.env.OPENSHIFT_NODEJS_PORT
+            port: '8080'
         }
     },
 
