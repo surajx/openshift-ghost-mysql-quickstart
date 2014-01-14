@@ -1,4 +1,4 @@
-#### OpenShift Quickstart has been updated to v0.3.3
+#### OpenShift Quickstart has been updated to v0.4
 
 # [Ghost](https://github.com/TryGhost/Ghost) [![Build Status](https://magnum.travis-ci.com/TryGhost/Ghost.png?token=hMRLUurj2P3wzBdscyQs&branch=master)](https://magnum.travis-ci.com/TryGhost/Ghost)
 
@@ -7,6 +7,11 @@ Ghost is a free, open, simple blogging platform that's available to anyone who w
 Visit the project's website at [http://ghost.org](http://ghost.org)!
 
 ## Running Ghost on OpenShift
+
+###Signup Error
+
+When you create a new user on Ghost on OpenShift, it will give a 503 error, but it does actually create the user, and you can then just go to the signin page and log in. I am investigating the issue.
+This looks like it might be a Ghost issue, I will update when it's fixed: 
 
 This is a basic quickstart to get Ghost running on OpenShift.  
 
@@ -28,6 +33,7 @@ Note these OpenShift specific changes:
 1. The content/data and content/images directories have been removed.  They are created on the server and symlinked to your $OPENSHIFT\_DATA\_DIR so that posts and uploaded images will persist across 'git pushes'
 2. Even though the node.js cartridge itself is scalable, this application will not play nice with scaling right now because it is using sqlite3 as the database (which is a file store), and the images are stored on disk, and since OpenShift does not currently support shared physical disk storage across scaled gears, this cartridge will not scale.  We are working on a solution for this.
 3. This quickstart currently is not setup for using MySQL, but it may be updated in the future, or another quickstart provided.  That will eliminate one of the scaling concerns.
+4. If you use a custom domain, modify the production url field in config.js file.
 
 
 ## Getting Started
@@ -44,8 +50,9 @@ There are two main ways to get started with Ghost:
 1.  Once you've downloaded one of the releases, unzip it, and place the directory wherever you would like to run the code
 2.  Fire up a terminal (or node command prompt in Windows) and change directory to the root of the Ghost application (where config.example.js and index.js are)
 4.  run `npm install --production` to install the node dependencies
-4.  To start ghost, run `npm start`
-5.  Visit `http://localhost:2368/` in your web browser
+4.  Make a local data directory , run `mkdir content/data`. This file is in .gitignore and will not push to openshift.
+5.  To start ghost, run `npm start`
+6.  Visit `http://localhost:2368/` in your web browser
 
 
 ### Updating with the latest changes
