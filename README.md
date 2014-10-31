@@ -10,7 +10,7 @@ This is a basic quickstart to get Ghost running on OpenShift.
 
 As of now creating this Quickstart from the web-console leads to an error, so only rhc client installation is possible. Make sure that you run 'gem update rhc' first so that you have the newest version:
 
-  rhc app create ghost nodejs-0.10 mysql-5.1 --scaling --env NODE_ENV=production --from-code https://github.com/surajx/openshift-ghost-quickstart.git
+`rhc app create ghost nodejs-0.10 mysql-5.1 --scaling --env NODE_ENV=production --from-code https://github.com/surajx/openshift-ghost-quickstart.git`
 
 'ghost' will be the name of your application.
 
