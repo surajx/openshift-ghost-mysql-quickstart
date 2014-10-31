@@ -8,23 +8,16 @@ Visit the project's website at <http://ghost.org> &bull; docs on <http://support
 
 This is a basic quickstart to get Ghost running on OpenShift.
 
-If you have already created an application with this, and are having issues with it not working when you do a restart,
-run this command, then issue a restart and it should be fixed.
+As of now creating this Quickstart from the web-console leads to an error, so only rhc client installation is possible. Make sure that you run 'gem update rhc' first so that you have the newest version:
 
-  rhc set-env NODE_ENV=production --app $appname
-
-Where $appname is the name of your application.  This was due to the pre_start_nodejs script not running on a restart.
-
-The easiest way is to use the following command, make sure that you run 'gem update rhc' first so that you have the newest version:
-
-  rhc app create ghost nodejs-0.10 mysql-5.1 --env NODE_ENV=production --from-code https://github.com/openshift-quickstart/openshift-ghost-quickstart.git
+  rhc app create ghost nodejs-0.10 mysql-5.1 --scaling --env NODE_ENV=production --from-code https://github.com/surajx/openshift-ghost-quickstart.git
 
 'ghost' will be the name of your application.
 
 Note these OpenShift specific changes:
 
 1. The content/data and content/images directories have been removed.  They are created on the server and symlinked to your $OPENSHIFT\_DATA\_DIR so that posts and uploaded images will persist across 'git pushes'
-2. Even though the node.js cartridge itself is scalable, this application will not play nice with scaling right now because it is using sqlite3 as the database (which is a file store), and the images are stored on disk, and since OpenShift does not currently support shared physical disk storage across scaled gears, this cartridge will not scale.  We are working on a solution for this.
+2. Images in ghost are stored on disk, and since OpenShift does not currently support shared physical disk storage across scaled gears, if scaling is enabled you could experience broken images. We are working on a solution for this.
 3. If you use a custom domain, modify the production url field in config.js file.
 
 
